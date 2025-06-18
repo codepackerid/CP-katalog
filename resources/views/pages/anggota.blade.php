@@ -74,11 +74,11 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8">
                     @foreach($members as $member)
                         <x-member-card 
-                            :name="$member['name']" 
-                            :photo="$member['photo']" 
-                            :angkatan="$member['angkatan']" 
-                            :role="$member['role']"
-                            :github="'https://github.com/' . str_replace(' ', '', strtolower($member['name']))"
+                            :name="$member->name" 
+                            :photo="$member->avatar ? asset('storage/' . $member->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($member->name) . '&color=7F9CF5&background=EBF4FF'" 
+                            :angkatan="$member->angkatan ?? '-'" 
+                            :role="$member->role ?? '-'"
+                            :github="$member->github ? 'https://github.com/' . $member->github : '#'"
                         />
                     @endforeach
                 </div>

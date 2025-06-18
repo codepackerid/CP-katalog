@@ -1,0 +1,16 @@
+-- Insert dummy projects for CodePacker
+-- Run this SQL file after starting MySQL and creating the database
+
+-- Clear existing projects to avoid duplicates
+TRUNCATE TABLE `projects`;
+
+-- Insert 8 dummy projects
+INSERT INTO `projects` (`title`, `description`, `image`, `repository_url`, `demo_url`, `technologies`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+('E-Learning Platform', 'Platform e-learning untuk mendukung pembelajaran jarak jauh dengan fitur kelas virtual, quiz interaktif, dan dashboard analitik kemajuan siswa.', 'projects/elearning-platform.jpg', 'https://github.com/demo/elearning-platform', 'https://elearning-demo.example.com', '["Laravel", "PHP", "MySQL", "JavaScript"]', 'published', 1, NOW(), NOW()),
+('Marketplace App', 'Aplikasi marketplace yang menghubungkan penjual dan pembeli dengan sistem pembayaran terintegrasi, fitur chat, dan sistem review.', 'projects/marketplace-app.jpg', 'https://github.com/demo/marketplace-app', 'https://marketplace-demo.example.com', '["Laravel", "PHP", "MySQL", "Vue.js", "Redis"]', 'published', 2, NOW(), NOW()),
+('Travel App', 'Aplikasi mobile untuk perencanaan perjalanan dengan fitur booking hotel, tiket pesawat, dan rekomendasi destinasi wisata.', 'projects/travel-app.jpg', 'https://github.com/demo/travel-app', 'https://travel-demo.example.com', '["Flutter", "Dart", "Firebase", "Google Maps API"]', 'published', 3, NOW(), NOW()),
+('Portfolio Website', 'Website portfolio responsif dengan animasi menarik, dark mode, dan contact form terintegrasi.', 'projects/portfolio-website.jpg', 'https://github.com/demo/portfolio-website', 'https://portfolio-demo.example.com', '["HTML", "CSS", "JavaScript", "GSAP", "Three.js"]', 'published', 4, NOW(), NOW()),
+('AI Image Generator', 'Web app yang menggunakan AI untuk menghasilkan gambar berdasarkan input teks pengguna dengan berbagai gaya artistik.', 'projects/ai-image-generator.jpg', 'https://github.com/demo/ai-image-generator', 'https://ai-image-demo.example.com', '["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Pandas"]', 'published', 1, NOW(), NOW()),
+('Inventory Management System', 'Sistem manajemen inventaris untuk bisnis kecil dan menengah dengan fitur tracking barang, laporan analitik, dan notifikasi stok menipis.', 'projects/inventory-system.jpg', 'https://github.com/demo/inventory-system', 'https://inventory-demo.example.com', '["Laravel", "PHP", "MySQL", "React", "Node.js"]', 'published', 2, NOW(), NOW()),
+('2D Platformer Game', 'Game platformer 2D dengan karakter yang dapat diubah, musuh dengan AI, dan level yang menantang.', 'projects/platformer-game.jpg', 'https://github.com/demo/platformer-game', 'https://game-demo.example.com', '["Unity", "C#", "Blender", "Photoshop"]', 'published', 3, NOW(), NOW()),
+('Weather App', 'Aplikasi cuaca yang menampilkan prakiraan cuaca, kualitas udara, dan peringatan cuaca ekstrem untuk lokasi pengguna.', 'projects/weather-app.jpg', 'https://github.com/demo/weather-app', 'https://weather-demo.example.com', '["React Native", "Dart", "Firebase", "Google Maps API"]', 'published', 4, NOW(), NOW()); 

@@ -1,0 +1,1 @@
+<?php\n// Simple script to manage project screenshots\n// Added by Claude

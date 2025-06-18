@@ -1,4 +1,4 @@
-@props(['title', 'image', 'technologies', 'author', 'description' => 'No description available', 'id' => 1])
+@props(['title', 'image', 'technologies', 'author', 'description' => 'No description available', 'id' => 1, 'screenshots' => []])
 
 <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-100 group">
     <!-- Image Container with overlay for buttons on hover -->
@@ -7,6 +7,24 @@
         
         <!-- Gradient overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+        
+        <!-- Screenshots preview (small thumbnails) -->
+        @if(!empty($screenshots) && count($screenshots) > 0)
+        <div class="absolute top-2 right-2 flex gap-1">
+            @foreach(array_slice($screenshots, 0, 3) as $index => $screenshot)
+            <div class="w-8 h-8 rounded-md overflow-hidden border border-white/50 shadow-sm">
+                <img src="{{ filter_var($screenshot, FILTER_VALIDATE_URL) ? $screenshot : asset('storage/' . $screenshot) }}" 
+                     alt="Screenshot {{ $index + 1 }}" 
+                     class="w-full h-full object-cover">
+            </div>
+            @endforeach
+            @if(count($screenshots) > 3)
+            <div class="w-8 h-8 rounded-md bg-black/50 flex items-center justify-center text-white text-xs font-medium border border-white/50">
+                +{{ count($screenshots) - 3 }}
+            </div>
+            @endif
+        </div>
+        @endif
         
         <!-- Buttons that appear on hover -->
         <div class="absolute bottom-0 left-0 right-0 p-3 flex justify-between items-center transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">

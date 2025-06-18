@@ -64,6 +64,60 @@
             </span>
         </a>
         
+        <!-- Login/Register or Profile Links -->
+        <div class="relative group">
+            <!-- For demo purposes, we'll show a dropdown toggle button -->
+            <button 
+                class="navbar-link relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors text-gray-600 hover:text-blue-600 {{ $active === 'Profile' ? 'active bg-muted text-blue-600' : '' }}"
+                id="user-menu-button"
+                aria-expanded="false"
+                aria-haspopup="true"
+                onclick="toggleUserMenu()">
+                <span class="hidden md:inline">Akun</span>
+                <span class="md:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+            </button>
+            
+            <!-- User Menu Dropdown -->
+            <div 
+                class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" 
+                id="user-dropdown-menu"
+                role="menu" 
+                aria-orientation="vertical" 
+                aria-labelledby="user-menu-button" 
+                tabindex="-1">
+                <!-- For non-authenticated users -->
+                @guest
+                <div class="guest-menu">
+                    <a href="{{ route('login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Masuk</a>
+                    <a href="{{ route('register') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Daftar</a>
+                </div>
+                @endguest
+                
+                <!-- For authenticated users -->
+                @auth
+                <div class="auth-menu">
+                    <div class="px-4 py-2 border-b border-gray-100">
+                        <p class="text-sm font-medium text-gray-900">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-gray-500">{{ Auth::user()->email }}</p>
+                    </div>
+                    <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profil Saya</a>
+                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Pengaturan</a>
+                    <div class="border-t border-gray-100">
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                            @csrf
+                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100" role="menuitem" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                        </form>
+                    </div>
+                </div>
+                @endauth
+            </div>
+        </div>
+        
         <!-- Animated Indicator -->
         <div class="navbar-indicator absolute inset-0 w-full bg-blue-50 rounded-full -z-10 opacity-0 transition-all duration-300"></div>
         
@@ -80,5 +134,12 @@
     @push('scripts')
     <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('js/tubelight-navbar.js') }}"></script>
+    <script>
+        // Toggle user menu
+        function toggleUserMenu() {
+            const menu = document.getElementById('user-dropdown-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
     @endpush
 @endonce

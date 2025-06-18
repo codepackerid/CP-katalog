@@ -16,7 +16,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach(array_slice($projects, 0, 3) as $project)
+                @foreach($projects->take(3) as $project)
                     <x-project-card 
                         :title="$project['title']" 
                         :image="$project['image']" 
@@ -46,7 +46,7 @@
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach(array_slice($members, 0, 4) as $member)
+                @foreach($members->take(4) as $member)
                     <x-member-card 
                         :name="$member['name']" 
                         :photo="$member['photo']" 

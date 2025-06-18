@@ -61,14 +61,15 @@
             
             <!-- Project Cards Grid using the project-card component -->                      
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                @forelse($projects as $index => $project)
+                @forelse($projects as $project)
                     <x-project-card 
-                        :title="$project['title']" 
-                        :image="$project['image']" 
-                        :technologies="$project['technologies']" 
-                        :author="$project['author']"
-                        :description="$project['description']"
-                        :id="$index + 1"
+                        :title="$project->title" 
+                        :image="$project->image ? asset('storage/' . $project->image) : 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=1176&q=80'" 
+                        :technologies="$project->technologies ?? []" 
+                        :author="['name' => $project->user->name, 'avatar' => $project->user->avatar ? asset('storage/' . $project->user->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($project->user->name)]"
+                        :description="$project->description"
+                        :id="$project->id"
+                        :screenshots="$project->screenshots ?? []"
                     />
                 @empty
                 <!-- Empty state - shown when no projects match search -->

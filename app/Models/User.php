@@ -21,6 +21,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
+        'location',
+        'website',
+        'github',
+        'twitter',
+        'instagram',
+        'linkedin',
+        'avatar',
     ];
 
     /**
@@ -44,5 +52,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the projects for the user.
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
     }
 }

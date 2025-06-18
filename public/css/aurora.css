@@ -79,3 +79,98 @@
     repeating-linear-gradient(100deg, var(--black) 0%, var(--black) 7%, var(--transparent) 10%, var(--transparent) 12%, var(--black) 16%),
     repeating-linear-gradient(100deg, var(--blue-500) 10%, var(--indigo-300) 15%, var(--blue-300) 20%, var(--violet-200) 25%, var(--blue-400) 30%);
 }
+
+/**
+ * Aurora Effect Styling
+ * Adds a beautiful gradient background effect
+ */
+
+.aurora-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.aurora-bg::before {
+    content: "";
+    position: absolute;
+    inset: -200px;
+    background-image: 
+        radial-gradient(circle at 60% 20%, rgba(147, 197, 253, 0.15), transparent 25%),
+        radial-gradient(circle at 40% 70%, rgba(165, 180, 252, 0.15), transparent 25%),
+        radial-gradient(circle at 80% 50%, rgba(221, 214, 254, 0.15), transparent 25%);
+    background-position: 50% 50%, 50% 50%;
+    background-size: 200% 200%, 200% 200%;
+    animation: aurora 60s linear infinite;
+    z-index: -1;
+}
+
+.dark .aurora-bg::before {
+    background-image: 
+        radial-gradient(circle at 60% 20%, rgba(147, 197, 253, 0.1), transparent 25%),
+        radial-gradient(circle at 40% 70%, rgba(165, 180, 252, 0.1), transparent 25%),
+        radial-gradient(circle at 80% 50%, rgba(221, 214, 254, 0.1), transparent 25%);
+}
+
+.aurora-border {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.aurora-border::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(59, 130, 246, 0.3) 0%, 
+        rgba(147, 197, 253, 0.3) 25%, 
+        rgba(165, 180, 252, 0.3) 50%, 
+        rgba(221, 214, 254, 0.3) 75%, 
+        rgba(59, 130, 246, 0.3) 100%);
+    background-size: 400% 400%;
+    z-index: -1;
+    filter: blur(8px);
+    animation: aurora-border 15s ease infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.dark .aurora-border::before {
+    opacity: 0.5;
+}
+
+.aurora-border:hover::before {
+    opacity: 0.5;
+}
+
+.dark .aurora-border:hover::before {
+    opacity: 0.7;
+}
+
+.modal-header-gradient {
+    background: linear-gradient(to right, 
+        rgba(239, 246, 255, 0.8),
+        rgba(238, 242, 255, 0.8));
+}
+
+.dark .modal-header-gradient {
+    background: linear-gradient(to right, 
+        rgba(30, 41, 59, 0.8),
+        rgba(15, 23, 42, 0.8));
+}
+
+@keyframes aurora-border {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
